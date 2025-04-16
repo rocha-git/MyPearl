@@ -32,6 +32,7 @@ body {
 #btnMute {
     opacity: 0;
     transition: all 1.5s ease-in-out;
+    color: #ffffff;
 }
 
 #card {
