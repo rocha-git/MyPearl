@@ -83,7 +83,7 @@
         const iconVolume = document.getElementById("iconUnmuted");
 
         audio.volume = 0.12
-    
+        iconVolume.classList.add("piscar");
        
         btnMute.addEventListener ("click", () => {
             audio.muted = !audio.muted;
@@ -134,7 +134,6 @@
         botao.addEventListener("click", function () {
             titulo.style.opacity = "100";
             btnMute.style.opacity = "1";
-            iconVolume.classList.add("piscar");
             audio.play();
 
             if (indiceAtual <= frases.length) {
@@ -181,9 +180,12 @@
                     titulo.innerHTML = "Começou!"
                     fraseEscolhida.style.borderStyle = "dotted";
                 }
+                if (indiceAtual === 25) {
+                    titulo.innerHTML = "Playlist";
+                }
                 indiceAtual++;
                 //indiceAtual = (indiceAtual + 1) % frases.length; // reinicia quando chega ao fim
-            }
+            };
         });
 
         btnLike.addEventListener("click", function () {
