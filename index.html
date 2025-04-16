@@ -83,8 +83,8 @@
         const iconVolume = document.getElementById("iconUnmuted");
 
         audio.volume = 0.12
-        iconVolume.classList.add("piscar");
-
+    
+       
         btnMute.addEventListener ("click", () => {
             audio.muted = !audio.muted;
             iconVolume.className = audio.muted ? "bx bxs-volume-mute" : "bx bxs-volume-full";
@@ -133,6 +133,9 @@
 
         botao.addEventListener("click", function () {
             titulo.style.opacity = "100";
+            btnMute.style.opacity = "1";
+            iconVolume.classList.add("piscar");
+            audio.play();
 
             if (indiceAtual <= frases.length) {
                 let texto = frases[indiceAtual].innerHTML;

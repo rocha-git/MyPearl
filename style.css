@@ -29,6 +29,11 @@ body {
     transform: scale(1.7);
 }
 
+#btnMute {
+    opacity: 0;
+    transition: all 1.5s ease-in-out;
+}
+
 #card {
     width: 90%;
     max-width: 400px;
