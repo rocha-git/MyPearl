@@ -12,6 +12,12 @@
 </head>
 
 <body>
+    <header>
+        <nav>
+            <audio id="meuAudio" autoplay loop preload="auto" src="./msc/first kiss - elijah who 8bit⛼pixel⛼ a e s t h e t i c.wav"></audio>
+            <button id="btnMute"><i id="iconUnmuted" class='bx bxs-volume-full'></i></button>
+        </nav>
+    </header>
     <div id="card">
         <h2 id="titulo">Moments</h2>
         <p id="fraseEscolhida"></p>
@@ -72,6 +78,23 @@
         const btnDislike = document.querySelector("#btnDislike");
         const nDislike = document.getElementById("nDislike")
         const titulo = document.getElementById("titulo");
+        const btnMute = document.getElementById("btnMute");
+        const audio = document.getElementById("meuAudio");
+        const iconVolume = document.getElementById("iconUnmuted");
+
+        audio.volume = 0.12
+        iconVolume.classList.add("piscar");
+
+        btnMute.addEventListener ("click", () => {
+            audio.muted = !audio.muted;
+            iconVolume.className = audio.muted ? "bx bxs-volume-mute" : "bx bxs-volume-full";
+
+            if (iconVolume.className == "bx bxs-volume-full") {
+                iconVolume.classList.add("piscar");
+            } else {
+                iconVolume.classList.remove("piscar");
+            }
+        })
 
         var contadorLike = 7;
         var contadorDislike = 7;

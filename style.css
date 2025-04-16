@@ -25,6 +25,10 @@ body {
     padding: 1rem;
 }
 
+#iconUnmuted {
+    transform: scale(1.7);
+}
+
 #card {
     width: 90%;
     max-width: 400px;
@@ -122,7 +126,12 @@ button {
 }
 
 .piscar {
-    animation: piscar 1.2s ease-in-out infinite;
+    animation: piscar 1.5s ease-in-out infinite;
+}
+
+#person {
+    image-rendering: optimizeQuality;
+    transform: scale(1.0);
 }
 
 @keyframes piscar {
