@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+    font-family: "Pixelify Sans", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    line-height: 1.0;
+    font-weight: 400;
+    padding: 1rem;
+}
+
+#card {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    padding: 2rem 1.5rem;
+    border-radius: 30px;
+    border-style: hidden;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+    transition: padding 1s ease-in-out;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    background: transparent;
+    color: #ff5cc0;
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+#fraseEscolhida {
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 1rem;
+    background-color: #ffffff;
+    color: #242424;
+    border-radius: 10px;
+    border-style: outset;
+    transition: padding 1.5s ease-in-out;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+button {
+    margin-top: 2rem;
+    border: 0;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+#heart {
+    color: #ff5cc0;
+    transition: all ease-in-out 0.5s;
+    animation: batimento 2s 1s infinite;
+    opacity: 0;
+}
+
+#music {
+    animation: color 1.5s 1s alternate-reverse infinite;
+    transition: ease-in-out 1s;
+    color: #ff009d;
+}
+
+#feedback {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 12rem;
+    gap: 3rem;
+    margin-left: 48px;
+    flex-wrap: wrap;
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+#like,
+#dislike {
+    transform: scale(2);
+    transition: color 1s ease;
+}
+
+#nLike,
+#nDislike {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.6rem;
+    position: relative;
+    bottom: 10px;
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+#nLike {
+    right: 30%;
+}
+
+#nDislike {
+    right: 30%;
+}
+
+.piscar {
+    animation: piscar 1.2s ease-in-out infinite;
+}
+
+@keyframes piscar {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Animações */
+@keyframes batimento {
+    50% {
+        transform: scale(2.3);
+    }
+}
+
+@keyframes color {
+    0% {
+        color: #ff99d8;
+    }
+
+    15% {
+        color: #ff7ece;
+    }
+
+    30% {
+        color: #ff52bd;
+    }
+
+    60% {
+        color: #ff2cae;
+    }
+
+    100% {
+        color: #ff009d;
+    }
+}
+
+/* Responsividade adicional (opcional) */
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    #fraseEscolhida {
+        font-size: 0.9rem;
+    }
+
+    #nLike,
+    #nDislike {
+        bottom: 10px;
+    }
+}

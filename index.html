@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Minha Pérola</title>
+</head>
+
+<body>
+    <div id="card">
+        <h2 id="titulo">Moments</h2>
+        <p id="fraseEscolhida"></p>
+        <button id="gerarFrase"><i id="heart" style="transform: scale(2.0);" class='bx bxs-heart'></i></button>
+    </div>
+
+    <ul id="frases" style="display: none;">
+        <li>Aqui estão alguns dos momentos em que vivemos.<br>（*＾-＾*）</li>
+        <li>Eu escrevi eles em frases, e a cada "clique" irá gerar um momento nosso.\^o^/</li>
+        <li>Você deve ter reparado que apareceram dois botões, um de like e outro de dislike.(⌐■_■)</li>
+        <li>Sua missão é apenas dar like pra cada momento que você mais gostou, e deslike pra um que você não
+            gostou tanto.<br>( ´･･)ﾉ(._.`)</li>
+        <li>☢Mas cuidado☢, os números de likes e deslikes são limitados, use com sabedoria.<br>ヾ(￣▽￣)<br><br>Obs: Não
+            precisa zerar os números.</li>
+        <li>Boa sorte Mozi.(❤ ω ❤)</li>
+        <li>Compras no supermercado.🛒</li>
+        <li>Zerar um jogo.🎮</li>
+        <li>Ir à missa.⛪</li>
+        <li>Passear no Shopping.🏬</li>
+        <li>Assistir anime.🎬</li>
+        <li>Comprar Stardew Valley.⛺</li>
+        <li>Ficar de madrugada Assistindo Shingeki.🎬</li>
+        <li>Planejar tarefas/viagens.🧳</li>
+        <li>Ouvir músicas juntos.🎧</li>
+        <li>Andar pelo centro.🚶‍♂️</li>
+        <li>Nossa primeira vez.😏</li>
+        <li>Rolê no bar.🍺</li>
+        <li>Mr Mix.🍦</li>
+        <li>Dog Mania.🌭</li>
+        <li>Primeiro dia juntos.👫</li>
+        <li>Primeiro Beijo.😽</li>
+        <li>Ouvir "eu te amo".❣</li>
+        <li>Mudança.🏠</li>
+        <li>Cuidados enquanto doente.💊</li>
+        <li><a href="https://open.spotify.com/playlist/413zLTEdFbINntPIlBZugl?si=NF2NUOiBRA2zTqLxMbXCOg"
+                id="play-btn"><i style="transform: scale(2.5);" class='bx bxl-deezer' id="music"></i></a></li>
+        <li></li>
+
+
+    </ul>
+    <div id="feedback">
+        <button id="btnLike">
+            <i class='bx bxs-like' id="like"></i>
+        </button>
+        <p id="nLike">7</p>
+        <button id="btnDislike">
+            <i class='bx bxs-dislike' id="dislike"></i>
+        </button>
+        <p id="nDislike">7</p>
+    </div>
+
+    <script>
+        const frases = document.querySelectorAll("#frases li");
+        const botao = document.querySelector("#gerarFrase");
+        const fraseEscolhida = document.getElementById("fraseEscolhida");
+        const btnLike = document.querySelector("#btnLike");
+        const nLike = document.getElementById("nLike");
+        const btnDislike = document.querySelector("#btnDislike");
+        const nDislike = document.getElementById("nDislike")
+        const titulo = document.getElementById("titulo");
+
+        var contadorLike = 7;
+        var contadorDislike = 7;
+        var indiceAtual = 0;
+        var ultimoIndice = frases.length - 1;
+
+        function escreverFrase(texto, elemento, velocidade = 21) {
+            let i = 0;
+            elemento.innerHTML = "";
+            function digitar() {
+                if (i < texto.length) {
+                    // Verifica se encontrou uma tag HTML (ex: <br>)
+                    if (texto[i] === "<") {
+                        let tag = "";
+                        while (i < texto.length && texto[i] !== ">") {
+                            tag += texto[i];
+                            i++;
+                        }
+                        tag += texto[i]; // adiciona o '>'
+                        i++;
+                        elemento.innerHTML += tag;
+                    } else {
+                        elemento.innerHTML += texto[i];
+                        i++;
+                    }
+                    setTimeout(digitar, velocidade);
+                }
+            }
+            digitar();
+        }
+
+        escreverFrase("Clique e descubra (∪.∪ )...zzz", fraseEscolhida);
+        setTimeout(() => {
+            document.getElementById("heart").style.opacity = "1";
+        }, 1000);
+
+        botao.addEventListener("click", function () {
+            titulo.style.opacity = "100";
+
+            if (indiceAtual <= frases.length) {
+                let texto = frases[indiceAtual].innerHTML;
+
+                // Se a frase contém um link (<a), mostra direto sem usar a digitação
+                if (texto.includes("<a")) {
+                    fraseEscolhida.innerHTML = texto;
+                } else {
+                    escreverFrase(texto, fraseEscolhida, 22);
+                }
+
+                document.getElementById("like").style.color = "white";
+                document.getElementById("dislike").style.color = "white";
+
+                if (indiceAtual === ultimoIndice && contadorDislike > contadorLike) {
+                    titulo.innerHTML = "Parabéns.🎂"
+                    escreverFrase("Parabéns, você gastou mais LIKE que DISLIKE! Receba sua recompensa:<br><br>1 - Colete o item em baixo do colchão.(1)<br>2 - Vale Massagem.(2)<br>3 - Vale atenção Máxima.(3)<br> 4 - Vale 'Posso fazer o que quiser'.(1)", fraseEscolhida);
+                    botao.style.display = "none";
+                    return;
+                }
+                if (indiceAtual === ultimoIndice && contadorDislike < contadorLike) {
+                    titulo.innerHTML = "Parabéns.🎂"
+                    escreverFrase("Parabéns, você gastou mais DISLIKE que LIKE, portanto irá receber apenas uma recompensa! Receba sua recompensa:<br><br>1 - Colete o item em baixo do colchão.(1)", fraseEscolhida);
+                    botao.style.display = "none";
+                    return;
+                }
+                if (indiceAtual === 2) {
+                    document.getElementById("feedback").style.opacity = "1";
+                }
+                if (indiceAtual === 3) {
+                    nLike.style.opacity = "1";
+                    nDislike.style.opacity = "1";
+                }
+                if (indiceAtual === 4) {
+                    nLike.classList.add("piscar");
+                    nDislike.classList.add("piscar");
+                }
+                if (indiceAtual === 5) {
+                    nLike.classList.remove("piscar");
+                    nDislike.classList.remove("piscar");
+                }
+                if (indiceAtual === 6) {
+                    titulo.innerHTML = "Começou!"
+                    fraseEscolhida.style.borderStyle = "dotted";
+                }
+                indiceAtual++;
+                //indiceAtual = (indiceAtual + 1) % frases.length; // reinicia quando chega ao fim
+            }
+        });
+
+        btnLike.addEventListener("click", function () {
+            contadorLike--;
+            nLike.innerHTML = contadorLike;
+            document.getElementById("like").style.color = "#ff009d";
+        });
+
+        btnDislike.addEventListener("click", function () {
+            contadorDislike--;
+            nDislike.innerHTML = contadorDislike;
+            document.getElementById("dislike").style.color = "#ff009d";
+        });
+    </script>
+
+</body>
+
+</html>
