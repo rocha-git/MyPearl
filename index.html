@@ -19,27 +19,46 @@
     </div>
 
     <ul id="frases" style="display: none;">
-        <li>Compras no supermercado.</li>
-        <li>Zerar um jogo.</li>
-        <li>Ir à missa.</li>
-        <li>Passear no Shopping.</li>
-        <li>Assistir anime.</li>
-        <li>Comprar Stardew Valley</li>
-        <li></li>
-
+        <li>Aqui estão alguns dos momentos em que vivemos.（*＾-＾*）</li>
+        <li>Eu escrevi eles em frases, e a cada "clique" irá gerar um momento nosso.\^o^/</li>
+        <li>Você deve ter reparado que apareceram dois botões, um de like e outro de dislike.(⌐■_■)</li>
+        <li>Sua missão é apenas dar like pra cada momento que você mais gostou, e deslike pra um que você não
+            gostou tanto.( ´･･)ﾉ(._.`)</li>
+        <li>☢Mas cuidado☢, o número de likes e deslikes são limitados, use com sabedoria.<br>ヾ(￣▽￣)<br><br>Obs: Não
+            precisa zerar os números.</li>
+        <li>Boa sorte Mozi.(❤ ω ❤)</li>
+        <li>Compras no supermercado.🛒</li>
+        <li>Zerar um jogo.🎮</li>
+        <li>Ir à missa.⛪</li>
+        <li>Passear no Shopping.🏬</li>
+        <li>Assistir anime.🎬</li>
+        <li>Comprar Stardew Valley.⛺</li>
+        <li>Ficar de madrugada Assistindo Shingeki.🎬</li>
+        <li>Planejar tarefas/viagens.🧳</li>
+        <li>Ouvir músicas juntos.🎧</li>
+        <li>Andar pelo centro.🚶‍♂️</li>
+        <li>Nossa primeira vez.😏</li>
+        <li>Rolê no bar.🍺</li>
+        <li>Mr Mix.🍦</li>
+        <li>Dog Mania.🌭</li>
+        <li>Primeiro dia juntos.👫</li>
+        <li>Primeiro Beijo.😽</li>
+        <li>Ouvir "eu te amo".❣</li>
         <li><a href="https://open.spotify.com/playlist/413zLTEdFbINntPIlBZugl?si=NF2NUOiBRA2zTqLxMbXCOg"
                 id="play-btn"><i style="transform: scale(2.5);" class='bx bxl-deezer' id="music"></i></a></li>
+        <li></li>
+
 
     </ul>
-    <div class="feedback">
+    <div id="feedback">
         <button id="btnLike">
             <i class='bx bxs-like' id="like"></i>
         </button>
-        <p id="nLike">0</p>
+        <p id="nLike">8</p>
         <button id="btnDislike">
             <i class='bx bxs-dislike' id="dislike"></i>
         </button>
-        <p id="nDislike">0</p>
+        <p id="nDislike">8</p>
     </div>
 
     <script>
@@ -50,36 +69,94 @@
         const nLike = document.getElementById("nLike");
         const btnDislike = document.querySelector("#btnDislike");
         const nDislike = document.getElementById("nDislike")
+        const titulo = document.getElementById("titulo");
 
-        var contadorLike = 0;
-        var contadorDislike = 0;
+        var contadorLike = 8;
+        var contadorDislike = 8;
         var indiceAtual = 0;
+        var ultimoIndice = frases.length - 1;
 
-        fraseEscolhida.textContent = "Clique e descubra :3"
+        function escreverFrase(texto, elemento, velocidade = 21) {
+            let i = 0;
+            elemento.innerHTML = "";
+            function digitar() {
+                if (i < texto.length) {
+                    // Verifica se encontrou uma tag HTML (ex: <br>)
+                    if (texto[i] === "<") {
+                        let tag = "";
+                        while (i < texto.length && texto[i] !== ">") {
+                            tag += texto[i];
+                            i++;
+                        }
+                        tag += texto[i]; // adiciona o '>'
+                        i++;
+                        elemento.innerHTML += tag;
+                    } else {
+                        elemento.innerHTML += texto[i];
+                        i++;
+                    }
+                    setTimeout(digitar, velocidade);
+                }
+            }
+            digitar();
+        }
+
+        fraseEscolhida.textContent = "Clique e descubra (∪.∪ )...zzz"
         botao.addEventListener("click", function () {
-            if (indiceAtual < frases.length) {
-                fraseEscolhida.innerHTML = frases[indiceAtual].innerHTML;
+
+            titulo.style.opacity = "1";
+            if (indiceAtual <= frases.length) {
+                let texto = frases[indiceAtual].innerHTML;
+                escreverFrase(texto, fraseEscolhida, 25);
+
                 document.getElementById("like").style.color = "white";
                 document.getElementById("dislike").style.color = "white";
-                indiceAtual = (indiceAtual + 1) % frases.length; // reinicia quando chega ao fim
-            }
-            else if (indiceAtual === frases.length - 1) {
-                titulo.textContent = "Eu te amo"
+
+                if (indiceAtual === ultimoIndice && contadorDislike > contadorLike) {
+                    escreverFrase("Parabéns, você gastou mais LIKE que DISLIKE! Receba sua recompensa:<br><br>1 - Colete o item em baixo do colchão.(1)<br>2 - Vale Massagem.(2)<br>3 - Vale atenção Máxima.(3)<br> 4 - Vale 'Posso fazer o que quiser'.(1)", fraseEscolhida);
+                    botao.style.display = "none";
+                    return;
+                }
+                if (indiceAtual === ultimoIndice && contadorDislike < contadorLike) {
+                    fraseEscolhida.innerHTML = "Parabéns, você gastou mais DISLIKE que LIKE, portanto irá receber apenas uma recompensa! Receba sua recompensa:<br><br>1 - Colete o item em baixo do colchão.(1)";
+                    botao.style.display = "none";
+                    return;
+                }
+                if (indiceAtual === 2) {
+                    document.getElementById("feedback").style.opacity = "1";
+                }
+                if (indiceAtual === 3) {
+                    nLike.style.opacity = "1";
+                    nDislike.style.opacity = "1";
+                }
+                if (indiceAtual === 4) {
+                    nLike.classList.add("piscar");
+                    nDislike.classList.add("piscar");
+                }
+                if (indiceAtual === 5) {
+                    nLike.classList.remove("piscar");
+                    nDislike.classList.remove("piscar");
+                }
+                if (indiceAtual === 6) {
+                    titulo.innerHTML = "Começou!"
+                    fraseEscolhida.style.borderStyle = "dotted";
+                }
+                indiceAtual++;
+                //indiceAtual = (indiceAtual + 1) % frases.length; // reinicia quando chega ao fim
             }
         });
 
         btnLike.addEventListener("click", function () {
-            contadorLike ++;
+            contadorLike--;
             nLike.innerHTML = contadorLike;
             document.getElementById("like").style.color = "#ff009d";
         });
 
         btnDislike.addEventListener("click", function () {
-            contadorDislike ++;
+            contadorDislike--;
             nDislike.innerHTML = contadorDislike;
             document.getElementById("dislike").style.color = "#ff009d";
         });
-
     </script>
 
 </body>
