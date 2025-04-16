@@ -30,15 +30,15 @@ body {
     max-width: 400px;
     height: auto;
     padding: 2rem 1.5rem;
-    background-color: rgba(44, 44, 44, 0.521);
+    background-color: #242424;
     border-radius: 30px;
-    border-style: ridge;
+    border-style: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 2rem auto;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    transition: padding 1s ease-in-out;
 }
 
 h2 {
@@ -47,24 +47,27 @@ h2 {
     margin-bottom: 1.5rem;
     color: #ff5cc0;
     text-align: center;
+    opacity: 0;
+    transition: all 1s ease;
 }
 
 #fraseEscolhida {
     font-family: "Pixelify Sans", sans-serif;
     font-size: 1rem;
+    font-weight: 500;
     text-align: center;
     padding: 1rem;
     background-color: #ffffff;
     color: #242424;
     border-radius: 10px;
     border-style: outset;
-    transition: all 1.5s ease-in-out;
+    transition: padding 1.5s ease-in-out;
     max-width: 100%;
     word-wrap: break-word;
 }
 
 button {
-    margin-top: 1rem;
+    margin-top: 2rem;
     border: 0;
     cursor: pointer;
     background-color: transparent;
@@ -82,14 +85,16 @@ button {
     color: #ff009d;
 }
 
-.feedback {
+#feedback {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
+    bottom: 12rem;
     gap: 3rem;
-    margin-left: 35px;
+    margin-left: 38px;
     flex-wrap: wrap;
+    opacity: 0;
+    transition: all 1s ease;
 }
 
 #like,
@@ -100,9 +105,12 @@ button {
 
 #nLike,
 #nDislike {
+    font-family: "Poppins", sans-serif;
     font-size: 0.6rem;
     position: relative;
     bottom: 10px;
+    opacity: 0;
+    transition: all 1s ease;
 }
 
 #nLike {
@@ -111,6 +119,19 @@ button {
 
 #nDislike {
    right: 20%;
+}
+
+.piscar {
+    animation: piscar 1.2s ease-in-out infinite;
+}
+
+@keyframes piscar {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 
 /* Animações */
