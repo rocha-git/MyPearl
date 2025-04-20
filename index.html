@@ -14,7 +14,8 @@
 <body>
     <header>
         <nav>
-            <audio id="meuAudio" autoplay loop preload="auto" src="./msc/first kiss - elijah who 8bit⛼pixel⛼ a e s t h e t i c.wav"></audio>
+            <audio id="meuAudio" autoplay loop preload="auto"
+                src="./msc/first kiss - elijah who 8bit⛼pixel⛼ a e s t h e t i c.wav"></audio>
             <button id="btnMute"><i id="iconUnmuted" class='bx bxs-volume-full'></i></button>
         </nav>
     </header>
@@ -84,8 +85,8 @@
 
         audio.volume = 0.12
         iconVolume.classList.add("piscar");
-       
-        btnMute.addEventListener ("click", () => {
+
+        btnMute.addEventListener("click", () => {
             audio.muted = !audio.muted;
             iconVolume.className = audio.muted ? "bx bxs-volume-mute" : "bx bxs-volume-full";
 
@@ -192,12 +193,22 @@
             contadorLike--;
             nLike.innerHTML = contadorLike;
             document.getElementById("like").style.color = "#ff009d";
+
+            if (contadorLike === -1) {
+                contadorLike = 0;
+                nLike.innerHTML = contadorLike;
+            };
         });
 
         btnDislike.addEventListener("click", function () {
             contadorDislike--;
             nDislike.innerHTML = contadorDislike;
             document.getElementById("dislike").style.color = "#ff009d";
+
+            if (contadorDislike === -1) {
+                contadorDislike = 0;
+                nDislike.innerHTML = contadorDislike;
+            };
         });
     </script>
 
